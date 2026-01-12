@@ -19,49 +19,66 @@
 
 
           <div class="mt-4">
-                <flux:chart wire:model="data" class="aspect-3/1">
-                    <flux:chart.svg>
-
-                        {{-- Soil Moisture --}}
-                        <flux:chart.line
-                            field="soil_moisture"
-                            class="text-blue-500 dark:text-blue-400"
-                        />
-
-                        {{-- Temperature --}}
-                        <flux:chart.line
-                            field="temperature"
-                            class="text-red-500 dark:text-red-400"
-                        />
-
-                        {{-- Light --}}
-                        <flux:chart.line
-                            field="light"
-                            class="text-yellow-500 dark:text-yellow-400"
-                        />
-
-                        {{-- X Axis --}}
-                        <flux:chart.axis axis="x" field="date">
-                            <flux:chart.axis.line />
-                            <flux:chart.axis.tick />
-                        </flux:chart.axis>
+            <flux:card>
+                <flux:chart class="grid gap-6" wire:model.live="data">
+                    <flux:chart.summary class="flex gap-12">
+                        <div>
+                            <flux:text class="text-green-500">Soil Moisture</flux:text>
+                        
+                            <flux:heading size="lg" class="mt-2 text-green-500 tabular-nums">
+                                <flux:chart.summary.value field="soil_moisture" />
+                            </flux:heading>
+                        </div>
                     
-                        {{-- Y Axis --}}
-                        <flux:chart.axis axis="y">
-                            <flux:chart.axis.grid />
-                            <flux:chart.axis.tick />
-                        </flux:chart.axis>
-                    
-                        <flux:chart.cursor />
-                    </flux:chart.svg>
+                        <div>
+                            <flux:text class="text-red-500">Temperature</flux:text>
+                        
+                            <flux:heading size="lg" class="mt-2 text-red-500 tabular-nums">
+                                <flux:chart.summary.value field="temperature"/>
+                            </flux:heading>
+                        </div>
+
+                        <div>
+                            <flux:text class="text-blue-500">Light</flux:text>
+                        
+                            <flux:heading size="lg" class="mt-2 text-blue-500  tabular-nums">
+                                <flux:chart.summary.value field="light" />
+                            </flux:heading>
+                        </div>
+
+                        <div>
+                            <flux:text>Date</flux:text>
+                        
+                            <flux:heading size="lg" class="mt-2 tabular-nums">
+                                <flux:chart.summary.value field="time_label" />
+                            </flux:heading>
+                        </div>
+
+                        
+                    </flux:chart.summary>
                 
-                    <flux:chart.tooltip>
-                        <flux:chart.tooltip.heading field="date" />
-                        <flux:chart.tooltip.value field="soil_moisture" label="Soil Moisture (%)" />
-                        <flux:chart.tooltip.value field="temperature" label="Temperature (°C)" />
-                        <flux:chart.tooltip.value field="light" label="Light (Lux)" />
-                    </flux:chart.tooltip>
+                    <flux:chart.viewport class="aspect-[3/1]">
+                        <flux:chart.svg>
+                            <flux:chart.line field="soil_moisture" class="text-green-500" />
+                            <flux:chart.line field="temperature" class="text-red-500" />
+                            <flux:chart.line field="light" class="text-blue-500" />
+                
+                            <flux:chart.axis axis="x" field="time_label">
+                                <flux:chart.axis.grid />
+                                <flux:chart.axis.tick />
+                                <flux:chart.axis.line />
+                            </flux:chart.axis>
+                        
+                            <flux:chart.axis axis="y">
+                                <flux:chart.axis.tick />
+                            </flux:chart.axis>
+                        
+                            <flux:chart.cursor />
+                        </flux:chart.svg>
+                    </flux:chart.viewport>
                 </flux:chart>
+            </flux:card>
+
           </div>
         </div>
 
