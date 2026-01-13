@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('cek-penyakit', CekPenyakit::class)->name('cek-penyakit');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('perangkat', Devices::class)->name('device');
-    Route::get('cek-penyakit', CekPenyakit::class)->name('cek-penyakit');
 
     Route::get('config/users', Users::class)->name('config.users');
     
