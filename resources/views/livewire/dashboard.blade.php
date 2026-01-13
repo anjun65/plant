@@ -8,9 +8,19 @@
 
         
           <div class="my-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <flux:select wire:model="device_id" placeholder="Pilih Device Anda...">
+                    @forelse ($this->devices as $device)
+                        <flux:select.option value="{{ $device->id }}">{{ $device->name }}</flux:select.option> 
+                    @empty
+                        <flux:select.option value="">Data Tidak ditemukan...</flux:select.option> 
+                    @endforelse
+                </flux:select>    
+                
                 <flux:date-picker mode="range" wire:model="range"/>
-                    
+
                 <div class="sm:ml-auto">
+                    
+
                     <flux:button wire:click="apply">
                         Terapkan
                     </flux:button>
@@ -26,7 +36,7 @@
                             <flux:text class="text-green-500">Soil Moisture</flux:text>
                         
                             <flux:heading size="lg" class="mt-2 text-green-500 tabular-nums">
-                                <flux:chart.summary.value field="soil_moisture" />
+                                <flux:chart.summary.value field="soil_moisture" /> %
                             </flux:heading>
                         </div>
                     
@@ -34,7 +44,15 @@
                             <flux:text class="text-red-500">Temperature</flux:text>
                         
                             <flux:heading size="lg" class="mt-2 text-red-500 tabular-nums">
-                                <flux:chart.summary.value field="temperature"/>
+                                <flux:chart.summary.value field="temperature"/> °C
+                            </flux:heading>
+                        </div>
+
+                        <div>
+                            <flux:text class="text-red-100">Humidity</flux:text>
+                        
+                            <flux:heading size="lg" class="mt-2 text-red-100 tabular-nums">
+                                <flux:chart.summary.value field="humidity"/> % RH
                             </flux:heading>
                         </div>
 
@@ -42,7 +60,7 @@
                             <flux:text class="text-blue-500">Light</flux:text>
                         
                             <flux:heading size="lg" class="mt-2 text-blue-500  tabular-nums">
-                                <flux:chart.summary.value field="light" />
+                                <flux:chart.summary.value field="light" /> lux
                             </flux:heading>
                         </div>
 
@@ -61,6 +79,7 @@
                         <flux:chart.svg>
                             <flux:chart.line field="soil_moisture" class="text-green-500" />
                             <flux:chart.line field="temperature" class="text-red-500" />
+                            <flux:chart.line field="humidity" class="text-red-100" />
                             <flux:chart.line field="light" class="text-blue-500" />
                 
                             <flux:chart.axis axis="x" field="time_label">

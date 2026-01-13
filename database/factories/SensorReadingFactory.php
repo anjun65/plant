@@ -25,6 +25,7 @@ class SensorReadingFactory extends Factory
             'device_id'     => Device::inRandomOrder()->value('id') ?? 1,
             'soil_moisture' => $this->faker->randomFloat(2, 20, 90), // %
             'temperature'   => $this->faker->randomFloat(2, 18, 35), // °C
+            'humidity'      => $this->faker->randomFloat(2, 30, 95),   // % RH
             'light'         => $this->faker->randomFloat(2, 100, 1000), // lux
             'recorded_at'   => $this->faker->dateTimeBetween('-7 days', 'now'),
         ];

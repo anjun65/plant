@@ -14,6 +14,7 @@ class SensorReading extends Model
         'device_id',
         'soil_moisture',
         'temperature',
+        'humidity',
         'light',
         'recorded_at',
     ];
@@ -21,6 +22,7 @@ class SensorReading extends Model
     protected $casts = [
         'soil_moisture' => 'float',
         'temperature'   => 'float',
+        'humidity'   => 'float',
         'light'         => 'float',
         'recorded_at'   => 'datetime',
     ];

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('device_id')->constrained()->cascadeOnDelete();
 
-            $table->decimal('soil_moisture', 5, 2)->nullable();
+            $table->unsignedInteger('soil_moisture', 5, 2)->nullable();
             $table->decimal('temperature', 5, 2)->nullable();
             $table->decimal('light', 8, 2)->nullable();
 
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamp('recorded_at');
             $table->timestamps();
             
-            $table->index(['device_id', 'parameter', 'recorded_at']);
+            $table->index(['device_id', 'recorded_at']);
         });
     }
 

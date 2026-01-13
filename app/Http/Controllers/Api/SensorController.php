@@ -18,6 +18,7 @@ class SensorController extends Controller
             'soil_moisture' => 'required|numeric',
             'temperature'   => 'required|numeric',
             'light'         => 'required|numeric',
+            'humidity'      => 'required|numeric',
             'recorded_at'   => 'nullable|date',
         ]);
 
@@ -32,7 +33,7 @@ class SensorController extends Controller
         $data = $validator->validated();
 
         // Ambil device berdasarkan device_id eksternal
-        $device = Device::where('device_id', $data['device_id'])->firstOrFail();
+        $device = Device::where('device_id', $data['device_id'])->first();
 
         // Ganti device_id eksternal → id PK
         $data['device_id'] = $device->id;
